@@ -1,6 +1,7 @@
 import passport from 'passport'
 import {Strategy as GitHubStrategy} from 'passport-github'
 import {User} from '../../models'
+import {UserType} from "../../types/usersTypes";
 
 
 passport.use(
@@ -13,7 +14,7 @@ passport.use(
         async (_: unknown, __: unknown, profile, done) => {
             try {
                 //собираем данные пользователя
-                const obj = {
+                const obj: UserType = {
                     fullName: profile.displayName,
                     avatarURL: profile.photos?.[0].value,
                     userName: profile.username,

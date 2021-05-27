@@ -8,8 +8,8 @@ import React from 'react';
 import { MainContext } from '../../../pages';
 
 export const EnterNameStep = () => {
-  const [inputValue, setInputValue] = React.useState<string>('');
-  const { onNextStep } = React.useContext(MainContext);
+  const { onNextStep, userData, setFieldValue } = React.useContext(MainContext);
+  const [inputValue, setInputValue] = React.useState<string>(userData.fullName);
 
   const nextDisabled = !inputValue;
 
@@ -18,8 +18,10 @@ export const EnterNameStep = () => {
   };
 
   const onClickNextStep = () => {
+    setFieldValue('fullName',inputValue)
     onNextStep();
   };
+
 
   return (
     <div className={styles.block}>
